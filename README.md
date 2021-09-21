@@ -30,7 +30,8 @@ npm login --scope=@activeviam --registry=https://activeviam.jfrog.io/artifactory
 Now go to your project root directory and and run `yarn install`
  
 ### ActivePivot Sandbox
-ActiveUI 5 is compatible with all version of active pivot starting 5.8. Make sure your instance is up to date. For the Excercises in the training we use the `sandbox-release-5.9.4`
+ActiveUI 5 is compatible with all version of active pivot starting 5.8. Make sure your instance is up to date. For the Excercises in the training we use the [sandbox-release-5.9.4](https://artifacts.activeviam.com/share/ActivePivot_stable/5.9.4/jdk11/)
+
 ### content server initialisation
 The github gist containing the files can be found [here](https://github.com/activeviam/activeui/blob/master/internal-docs/content-server-initialization.md)
 If you do not have access to the gist do the following:
