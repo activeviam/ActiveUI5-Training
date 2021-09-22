@@ -115,6 +115,7 @@ const titleBarButtonPlugins: Array<TitleBarButtonPlugin<any>> = [
 
 // defines components that can be used in a dashboard. On the UI they are accessible via the widget ribbons
 // Order matters: it controls the order of the icons in the widget ribbons.
+// TODO: Ex1 - remove the tree table plugin to remove it from the ribbon
 const widgetPlugins: Array<WidgetPlugin<any, any>> = [
   pluginWidgetPivotTable,
   pluginWidgetTreeTable,

@@ -12,6 +12,9 @@ import { plugins } from "./plugins";
 - One can register the name of the application
 - the initial state of every new dashboard is defined
  */
+
+//TODO: Ex1 - change the Application name to "AUI Training" and change the initialDashboardPageState to include
+// a line chart instead of a pivot table
 const extension: ExtensionModule = {
   activate: async (configuration) => {
     _merge(configuration.pluginRegistry, plugins);
