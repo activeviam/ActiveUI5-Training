@@ -18,7 +18,7 @@ import { plugins } from "./plugins";
 const extension: ExtensionModule = {
   activate: async (configuration) => {
     _merge(configuration.pluginRegistry, plugins);
-    configuration.applicationName = "ActiveUI";
+    configuration.applicationName = "AUI Training";
     configuration.initialDashboardPageState = {
       content: { "0": pluginWidgetPlotlyLineChart.initialState },
       layout: {

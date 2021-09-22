@@ -118,7 +118,6 @@ const titleBarButtonPlugins: Array<TitleBarButtonPlugin<any>> = [
 // TODO: Ex1 - remove the tree table plugin to remove it from the ribbon
 const widgetPlugins: Array<WidgetPlugin<any, any>> = [
   pluginWidgetPivotTable,
-  pluginWidgetTreeTable,
   pluginWidgetTable,
   pluginWidgetKpi,
   pluginWidgetPlotlyLineChart,
