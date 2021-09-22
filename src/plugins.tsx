@@ -1,3 +1,12 @@
+/**
+ * This file lists all the plugins from the sdk that are used in the starter application.
+ * You will find all the different widgets, context menu items and other features used.
+ * This is where you add all your custom plugins.
+ * It is also important to note that, should you not need any of the listed plugin, you can also remove it,
+ * which will reduce your bundle size and therefore increase performance
+ * */
+
+
 import _keyBy from "lodash/keyBy";
 import {
   CellPlugin,
@@ -60,18 +69,21 @@ import {
   pluginWidgetTreeTable,
 } from "@activeviam/activeui-sdk";
 
+// plugins used by cell component on table widgets
 const cellPlugins: Array<CellPlugin<any>> = [
   pluginCellTable,
   pluginCellPivotTable,
   pluginCellTreeTable,
 ];
 
+// plugins used to style the cells in table widgets
 const cellStylePlugins: Array<CellStylePlugin<any>> = [
   pluginCellStyleTable,
   pluginCellStylePivotTable,
   pluginCellStyleDrillthroughTable,
 ];
 
+// plugins used in the context menus of widget (defines the actions available in the top right corner of a widget)
 const menuItemPlugins: Array<MenuItemPlugin<any, any>> = [
   pluginMenuItemDuplicateWidget,
   pluginMenuItemFullScreen,
@@ -93,12 +105,14 @@ const menuItemPlugins: Array<MenuItemPlugin<any, any>> = [
   pluginMenuItemSwitchQuickFilterMode,
 ];
 
+// defines the buttons accessible next to the context menu
 const titleBarButtonPlugins: Array<TitleBarButtonPlugin<any>> = [
   pluginTitleBarButtonFullScreen,
   pluginTitleBarButtonRemoveWidget,
   pluginTitleBarButtonToggleQueryMode,
 ];
 
+// defines components that can be used in a dashboard. On the UI they are accessible via the widget ribbons
 // Order matters: it controls the order of the icons in the widget ribbons.
 const widgetPlugins: Array<WidgetPlugin<any, any>> = [
   pluginWidgetPivotTable,
@@ -128,6 +142,7 @@ const widgetPlugins: Array<WidgetPlugin<any, any>> = [
   pluginWidgetDrillthroughTable,
 ];
 
+// Here we filter the Plotly widget plugins and defines their properties
 const plotlyWidgetPlugins = widgetPlugins.filter(({ key }) =>
   key.startsWith("plotly"),
 );
@@ -163,6 +178,7 @@ pluginWidgetPivotTable.cellStyle = pluginCellStylePivotTable.key;
 pluginWidgetTreeTable.cell = pluginCellTreeTable.key;
 pluginWidgetTreeTable.cellStyle = pluginCellStylePivotTable.key;
 
+// setting properties on table widgets
 [pluginWidgetPivotTable, pluginWidgetTreeTable, pluginWidgetTable].forEach(
   (tableWidget) => {
     tableWidget.menuItems = [
