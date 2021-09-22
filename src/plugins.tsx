@@ -69,7 +69,10 @@ import {
   pluginWidgetTreeTable,
 } from "@activeviam/activeui-sdk";
 
+<<<<<<< HEAD
 // plugins used by cell component on table widgets
+=======
+>>>>>>> 5884247b6ee17d5b93dde71d342cc0f182489811
 const cellPlugins: Array<CellPlugin<any>> = [
   pluginCellTable,
   pluginCellPivotTable,
