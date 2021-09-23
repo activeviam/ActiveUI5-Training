@@ -1,5 +1,6 @@
 import { WidgetPlugin } from "@activeviam/activeui-sdk";
 import { FXComponent } from "./FXComponent";
+import {IconWorld} from "./IconWorld";
 
 const widgetKey = "fx-rates"
 

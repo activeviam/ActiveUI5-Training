@@ -17,7 +17,7 @@ const extension: ExtensionModule = {
     _merge(configuration.pluginRegistry, plugins);
     configuration.applicationName = "ActiveUI";
     configuration.initialDashboardPageState = {
-      content: { "0": pluginWidgetPlotlyLineChart.initialState },
+      content: { "0": pluginWidgetPivotTable.initialState },
       layout: {
         children: [
           {
