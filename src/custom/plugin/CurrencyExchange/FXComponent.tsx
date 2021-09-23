@@ -3,7 +3,7 @@ import React, {FC, useEffect, useState} from "react"
 import axios from "axios"
 import { WidgetPluginProps } from "@activeviam/activeui-sdk";
 
-const apiURL = "api.frankfurter.app/latest?from=USD&to=GBP,EUR,AUD"
+const apiURL = "http://api.frankfurter.app/latest?from=USD&to=GBP,EUR,AUD"
 
 export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
@@ -32,7 +32,7 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
             <p>${date}</p>
             <li>
                 {Object.keys(fxRates).map(rate => {
-                    return (<ul>${rate}:${fxRates[rate]}</ul>)
+                    return (<ul>${rate}</ul>)
                 })}
             </li>
         </div>

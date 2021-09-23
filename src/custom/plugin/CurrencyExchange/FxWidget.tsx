@@ -6,7 +6,8 @@ const widgetKey = "fx-rates"
 
 //TODO Ex2-1: Register the FxComponent to the FxWidget
 export const pluginFxRateWidget: WidgetPlugin = {
-    Component: "Insert component here",
+    Component: FXComponent,
+    Icon: IconWorld,
     initialState: {
         widgetKey
     },
