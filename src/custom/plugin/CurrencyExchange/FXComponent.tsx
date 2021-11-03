@@ -3,7 +3,7 @@ import React, {FC, useEffect, useState} from "react"
 import axios from "axios"
 import { WidgetPluginProps } from "@activeviam/activeui-sdk";
 
-const apiURL = "http://api.frankfurter.app/latest?from=AUD&to=CNY"
+const apiURL = "http://api.frankfurter.app/latest?from=AUD&to=CNY,BRL,ISK"
 
 export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
