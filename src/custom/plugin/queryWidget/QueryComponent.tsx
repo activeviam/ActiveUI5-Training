@@ -5,7 +5,7 @@ import React, {FC} from 'react'
 export const QueryComponent: FC<WidgetPluginProps> = (props) => {
 
     let {data, error, isLoading} = useQueryResult({
-        serverKey: "sandbox-5.10",
+        serverKey: "Ranch-5.10",
         queryId: props.queryId,
         query: {
             mdx: "SELECT\n" +
