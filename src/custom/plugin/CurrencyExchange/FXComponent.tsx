@@ -1,8 +1,7 @@
-import {Select, Table, TableProps} from "antd";
-import {Option} from "antd/es/mentions";
+import {Dropdown, Select, Table, TableProps} from "antd";
 import React, {FC, useEffect, useState} from "react"
 import axios from "axios"
-import { WidgetPluginProps } from "@activeviam/activeui-sdk";
+import {useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
 
 const apiURL = "http://api.frankfurter.app/"
 const possibleBaseCurrencies=["USD","EUR"]
@@ -29,7 +28,6 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
     // makes the API call to retrieve fxRates, base and date
     useEffect(() => {
         axios.get(`${apiURL}${date}?from=${base}&to=GBP,EUR,AUD`).then(result => {
-            console.log("result.data")
 
             let ratesTableData: any[] = Object.keys(result.data.rates).map(currency => {
                 let data = {
@@ -37,11 +35,8 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
                     currency: currency,
                     rate: result.data.rates[currency]
                 }
-                console.log(data)
                 return data;
             });
-
-            console.log(ratesTableData)
 
             setBase(result.data.base)
             setDate(result.data.date)
@@ -54,7 +49,7 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
     let baseCurrencyOptions = possibleBaseCurrencies.map(currency => {
         return (
-            <Option value={currency}>{currency}</Option>
+            <Select.Option value={currency}>{currency}</Select.Option>
         );
     });
 

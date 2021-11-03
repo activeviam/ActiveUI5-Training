@@ -69,6 +69,7 @@ import {
   pluginWidgetTreeTable,
 } from "@activeviam/activeui-sdk";
 import {pluginFxRateWidget} from "./custom/plugin/CurrencyExchange/FxWidget";
+import {pluginQueryWidget} from "./custom/plugin/queryWidget/QueryWidget";
 
 
 // plugins used by cell component on table widgets
@@ -118,7 +119,8 @@ const titleBarButtonPlugins: Array<TitleBarButtonPlugin<any>> = [
 // Order matters: it controls the order of the icons in the widget ribbons.
 //TODO Ex2-2: add the FxWidget to the plugin list
 const widgetPlugins: Array<WidgetPlugin<any, any>> = [
-  pluginFxRateWidget,
+  pluginQueryWidget,
+  // pluginFxRateWidget,
   pluginWidgetPivotTable,
   pluginWidgetTreeTable,
   pluginWidgetTable,
