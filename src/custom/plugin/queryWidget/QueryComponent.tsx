@@ -23,22 +23,51 @@ export const QueryComponent: FC<WidgetPluginProps> = (props) => {
         }
     });
 
-    console.log("hello world");
-    console.log(error);
     console.log(isLoading, data);
-    console.log(data);
+;
 
     if (isLoading) {
         return <Spin/>
     }
 
     if (error) {
-        return
+        return <p>{error.stackTrace}</p>
     }
+
+    const [columnsAxis, rowsAxis] = data.axes;
+    console.log("axes");
+    console.log(columnsAxis);
+    console.log(rowsAxis);
+    const numberOfColumns = columnsAxis.positions.length;
 
     return (
         <div>
-            {'placeholder for QueryComponent'}
+            <table>
+                <tr>
+                    <th/>
+                    {columnsAxis.positions.map((position, columnIndex) => (
+                        <th key={columnIndex}>{position[0].captionPath[1]}</th>
+                    ))}
+                </tr>
+                {/*{rowsAxis.positions.map((position, rowIndex) => {*/}
+                {/*    const tableCells: JSX.Element[] = [];*/}
+
+                {/*    // the first column represents the members of the rows axis (the countries)*/}
+                {/*    tableCells.push(<td key={0}>{position[0].captionPath[2]}</td>);*/}
+
+                {/*    for (let columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {*/}
+                {/*        const cellIndex = rowIndex * numberOfColumns + columnIndex;*/}
+                {/*        // HERE we use data.cells!*/}
+                {/*        const dataCell = data.cells[cellIndex];*/}
+
+                {/*        tableCells.push(*/}
+                {/*            <td key={columnIndex + 1}>{dataCell?.formattedValue}</td>,*/}
+                {/*        );*/}
+                {/*    }*/}
+
+                {/*    return <tr key={rowIndex}>{tableCells}</tr>;*/}
+                {/*})}*/}
+            </table>
         </div>
     )
 }
