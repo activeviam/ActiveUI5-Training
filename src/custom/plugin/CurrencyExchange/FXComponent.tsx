@@ -1,8 +1,7 @@
-import {Select, Table, TableProps} from "antd";
-import {Option} from "antd/es/mentions";
-import React, {FC, useEffect, useState} from "react"
+import {WidgetPluginProps} from "@activeviam/activeui-sdk";
+import {Col, Row, Select, Table} from "antd";
 import axios from "axios"
-import { WidgetPluginProps } from "@activeviam/activeui-sdk";
+import React, {FC, useEffect, useState} from "react"
 
 const apiURL = "http://api.frankfurter.app/"
 const possibleBaseCurrencies=["USD","EUR"]
@@ -20,7 +19,7 @@ const columns = [
     }
 ]
 
-export const FXComponent: FC<WidgetPluginProps> = (props) => {
+export const FXComponent: FC<WidgetPluginProps> = () => {
 
     const [base, setBase] = useState("USD");
     const [date, setDate] = useState("latest");
@@ -52,45 +51,48 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
         })
     }, []);
 
-    let baseCurrencyOptions = possibleBaseCurrencies.map(currency => {
+    const baseCurrencyOptions = possibleBaseCurrencies.map(currency => {
+        console.log(currency);
         return (
-            <Option value={currency}>{currency}</Option>
+            <Select.Option value={currency}>{currency}</Select.Option>
+            // {label: currency, value: currency}
         );
     });
 
+    const handleChange = (event: any) => {
+        console.log(event.currentTarget.value);
+        setBase(event.currentTarget.value)
+    }
+
     return (
-        <div style={props.style}>
-            <Select
-                defaultValue={base}
-                style={{ width: 120 }}
-                placeholder="select base currency"
-            >
-                {
-                    possibleBaseCurrencies.map(currency => (
-                            <Option value={currency}>{currency}</Option>
-                        )
-                    )
-                }
-            </Select>
-            <Select
-                defaultValue={date}
-                style={{ width: 120 }}
-                placeholder="select a date"
-            >
-                {
-                    possibleDates.map(date => (
-                            <Option value={date}>{date}</Option>
-                        )
-                    )
-                }
-            </Select>
-            <p></p>
-            <Table
-                columns={columns}
-                dataSource={fxRates}
-                size="small"
-                bordered
-            />
+        <div style={{height:"100%", overflow: "auto"}}>
+            {/*<Select*/}
+            {/*    defaultValue={date}*/}
+            {/*    style={{ width: 120 }}*/}
+            {/*    placeholder="select a date"*/}
+            {/*>*/}
+            {/*    {*/}
+            {/*        possibleDates.map(date => (*/}
+            {/*                <Option value={date}>{date}</Option>*/}
+            {/*            )*/}
+            {/*        )*/}
+            {/*    }*/}
+            {/*</Select>*/}
+            {/*<Table*/}
+            {/*    columns={columns}*/}
+            {/*    dataSource={fxRates}*/}
+            {/*    size="small"*/}
+            {/*    bordered*/}
+            {/*    pagination={false}*/}
+            {/*/>*/}
+                <Select
+                    style={{ padding: "4px 4px", width: 120 }}
+                    // options={baseCurrencyOptions}
+                >
+                    <Select.Option value={1}>test1</Select.Option>
+                    <Select.Option value={2}>test2</Select.Option>
+                </Select>
+
         </div>
     )
 }
