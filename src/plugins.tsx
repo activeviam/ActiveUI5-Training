@@ -69,6 +69,7 @@ import {
   pluginWidgetTreeTable,
 } from "@activeviam/activeui-sdk";
 import {pluginFxRateWidget} from "./custom/plugin/CurrencyExchange/FxWidget";
+import {pluginMenuItemBaseCurrency} from "./custom/plugin/menuitems/baseCurrency/baseCurrencyMenuItemPlugin";
 import {pluginQueryWidget} from "./custom/plugin/queryWidget/QueryWidget";
 
 
@@ -88,6 +89,7 @@ const cellStylePlugins: Array<CellStylePlugin<any>> = [
 
 // plugins used in the context menus of widget (defines the actions available in the top right corner of a widget)
 const menuItemPlugins: Array<MenuItemPlugin<any, any>> = [
+  pluginMenuItemBaseCurrency,
   pluginMenuItemDuplicateWidget,
   pluginMenuItemFullScreen,
   pluginMenuItemFilterOnSelection,
@@ -119,7 +121,6 @@ const titleBarButtonPlugins: Array<TitleBarButtonPlugin<any>> = [
 // Order matters: it controls the order of the icons in the widget ribbons.
 //TODO Ex2-2: add the FxWidget to the plugin list
 const widgetPlugins: Array<WidgetPlugin<any, any>> = [
-  // pluginQueryWidget,
   pluginFxRateWidget,
   pluginWidgetPivotTable,
   pluginWidgetTreeTable,
@@ -209,6 +210,11 @@ pluginWidgetTreeTable.cellStyle = pluginCellStylePivotTable.key;
     ];
   },
 );
+
+//Setting MenuItem on our custom FxWidget
+pluginFxRateWidget.menuItems = [
+    pluginMenuItemBaseCurrency.key
+]
 
 pluginWidgetDrillthroughTable.menuItems = [
   pluginMenuItemRemoveWidget.key,
