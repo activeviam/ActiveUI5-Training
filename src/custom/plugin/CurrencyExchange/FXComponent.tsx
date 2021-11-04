@@ -1,10 +1,10 @@
 import {useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
-import {Select, Spin, Table} from "antd";
+import {Spin, Table} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"
+import {FxComponentWidgetState} from "./FxComponent.types";
 
-const apiURL = "http://api.frankfurter.app/latest?from=AUD&to=CNY,BRL,ISK"
 const apiBaseURl = "http://api.frankfurter.app/"
 const columns = [
     {
@@ -19,28 +19,17 @@ const columns = [
     }
 ]
 
-export const FXComponent: FC<WidgetPluginProps> = (props) => {
+export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props) => {
 
     const [fxRates, setFxRates] = useState([]);
-    const [baseCurrency, setbaseCurrency] = useState("USD");
+    const [baseCurrency, setbaseCurrency] = useState(props.widgetState.baseCurrency);
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
     let {data, error, isLoading} = useQueryResult({
         serverKey: "Ranch-5.10",
         queryId: props.queryId,
         query: {
-            mdx: "SELECT\n" +
-                "  NON EMPTY Hierarchize(\n" +
-                "    Descendants(\n" +
-                "      {\n" +
-                "        [Currency].[Currency].[AllMember]\n" +
-                "      },\n" +
-                "      1,\n" +
-                "      SELF_AND_BEFORE\n" +
-                "    )\n" +
-                "  ) ON ROWS\n" +
-                "  FROM [EquityDerivativesCube]\n" +
-                "  CELL PROPERTIES VALUE, FORMATTED_VALUE, BACK_COLOR, FORE_COLOR, FONT_FLAGS"
+            mdx: props.widgetState.query
         }
     });
 
