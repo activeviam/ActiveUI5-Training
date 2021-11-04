@@ -1,5 +1,6 @@
 import {useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
 import {Select, Spin, Table} from "antd";
+import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"
 
@@ -21,7 +22,7 @@ const columns = [
 export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
     const [fxRates, setFxRates] = useState([]);
-    const [selectedBase, setSelectedBase] = useState("USD");
+    const [baseCurrency, setbaseCurrency] = useState("USD");
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
     let {data, error, isLoading} = useQueryResult({
@@ -55,7 +56,7 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
                 }
             });
             console.log(currencies);
-            const updatedApiUrl = `${apiBaseURl}latest?from=${selectedBase}&to=${currencies.join(",")}`
+            const updatedApiUrl = `${apiBaseURl}latest?from=${baseCurrency}&to=${currencies.join(",")}`
             axios.get(updatedApiUrl).then(result => {
 
                     let ratesTableData: any[] = Object.keys(result.data.rates).map(currency => {
@@ -92,6 +93,7 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
     return (
         <div style={{height:"100%", overflow: "auto" , padding: 5}}>
+            <Title level={4}>{`Base Currency: ${baseCurrency}`}</Title>
             <Table
                 columns={columns}
                 dataSource={fxRates}
