@@ -13,9 +13,9 @@
     "build": "activeui-scripts build"
   },
   "dependencies": {
-    "@activeviam/activeui-scripts": "5.0.2",
-    "@activeviam/activeui-sdk": "5.0.2",
-    "@activeviam/sandbox-clients": "5.0.2",
+    "@activeviam/activeui-scripts": "5.0.3",
+    "@activeviam/activeui-sdk": "5.0.3",
+    "@activeviam/sandbox-clients": "5.0.3",
     "antd": "4.12.2",
     "axios": "^0.21.4",
     "lodash": "^4.17.15",
