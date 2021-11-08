@@ -1,7 +1,6 @@
 import {getAntMenuItemProps, MenuItemProps, useQueryResult} from "@activeviam/activeui-sdk";
 import {Button, List, Modal, Spin} from "antd";
 import Menu from "antd/lib/menu";
-
 import React, {FC, useEffect, useState} from 'react';
 
 
@@ -30,7 +29,10 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps> = (props) => {
         }
     });
 
-    const handleChangebaseCurrency = () => {
+    const handleChangebaseCurrency: MenuItemProps["onClick"] = (param) => {
+        if (props.onClick) {
+            props.onClick(param)
+        }
         setCurrencyModalVisible(true)
     }
 
