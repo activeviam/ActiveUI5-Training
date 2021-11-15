@@ -3,7 +3,7 @@ import {Spin, Table} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"
-import {FxComponentWidgetState} from "./FxComponent.types";
+import {BaseCurrency, FxComponentWidgetState} from "./FxComponent.types";
 
 const apiBaseURl = "http://api.frankfurter.app/"
 const columns = [
@@ -33,6 +33,9 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
         }
     });
 
+    useEffect(() => {
+        setbaseCurrency(props.widgetState.baseCurrency);
+    }, [props.widgetState.baseCurrency]);
 
 
     // makes the API call to retrieve fxRates, base and date, once we have the data from the cube
@@ -45,6 +48,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
                 }
             });
             console.log(currencies);
+            console.log("base", baseCurrency);
             const updatedApiUrl = `${apiBaseURl}latest?from=${baseCurrency}&to=${currencies.join(",")}`
             axios.get(updatedApiUrl).then(result => {
 
@@ -64,7 +68,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
                 alert("could not retrieve fx Rates")
             })
         }
-    }, [data]);
+    }, [data,baseCurrency]);
 
     if (isLoading) {
         return <Spin/>

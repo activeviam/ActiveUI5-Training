@@ -2,12 +2,12 @@ import {getAntMenuItemProps, MenuItemProps, useQueryResult} from "@activeviam/ac
 import {Button, List, Modal, Spin} from "antd";
 import Menu from "antd/lib/menu";
 import React, {FC, useEffect, useState} from 'react';
+import {FxComponentWidgetState} from "../../CurrencyExchange/FxComponent.types";
 
 
-export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps> = (props) => {
+export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetState>> = (props) => {
 
     const [currencyModalVisible, setCurrencyModalVisible] = useState(false);
-    const [selectedBaseCurrency, setSelectedBaseCurrency] = useState(null);
     const [currencyList, setCurrencyList] = useState<Array<String>>([]);
 
     let {data, error, isLoading} = useQueryResult({
@@ -37,7 +37,13 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps> = (props) => {
     }
 
     const handleSelectCurrency = (event: any) => {
-        setSelectedBaseCurrency(event.currentTarget.value);
+        console.log("new Currency", event.currentTarget.value);
+        console.log(props.widgetState);
+        console.log("widget state", props.widgetState.baseCurrency);
+        props.onWidgetChange({
+            ...props.widgetState,
+            baseCurrency: event.currentTarget.value
+        })
     }
 
     const handleCancel =() => {
