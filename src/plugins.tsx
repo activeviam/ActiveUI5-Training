@@ -69,7 +69,7 @@ import {
   pluginWidgetTreeTable,
 } from "@activeviam/activeui-sdk";
 import {pluginFxRateWidget} from "./custom/plugin/CurrencyExchange/FxWidget";
-
+//TODO : Ex4 import the menu item plugin
 
 // plugins used by cell component on table widgets
 const cellPlugins: Array<CellPlugin<any>> = [
@@ -86,6 +86,7 @@ const cellStylePlugins: Array<CellStylePlugin<any>> = [
 ];
 
 // plugins used in the context menus of widget (defines the actions available in the top right corner of a widget)
+// TODO : add the custom menu item to the list
 const menuItemPlugins: Array<MenuItemPlugin<any, any>> = [
   pluginMenuItemDuplicateWidget,
   pluginMenuItemFullScreen,
@@ -207,6 +208,8 @@ pluginWidgetTreeTable.cellStyle = pluginCellStylePivotTable.key;
     ];
   },
 );
+
+// TODO: Ex4 - Add the menuItem to the list of available menu item fo the Fx rate widget
 
 pluginWidgetDrillthroughTable.menuItems = [
   pluginMenuItemRemoveWidget.key,
