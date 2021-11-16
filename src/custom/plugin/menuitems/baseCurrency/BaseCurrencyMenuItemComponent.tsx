@@ -30,6 +30,7 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
     });
 
     const handleChangebaseCurrency: MenuItemProps["onClick"] = (param) => {
+        // the props.onClick will make the custom menuItem disappear when the modal opens
         if (props.onClick) {
             props.onClick(param)
         }
