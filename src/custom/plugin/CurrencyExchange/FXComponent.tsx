@@ -4,7 +4,6 @@ import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"
 
-const apiURL = "http://api.frankfurter.app/latest?from=AUD&to=CNY,BRL,ISK"
 const apiBaseURl = "http://api.frankfurter.app/"
 const columns = [
     {
