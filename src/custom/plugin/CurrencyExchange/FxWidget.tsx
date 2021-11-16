@@ -4,8 +4,9 @@ import {IconWorld} from "./IconWorld";
 
 const widgetKey = "fx-rates"
 
-//TODO Ex2-1: Register the FxComponent to the FxWidget
+//TODO: Ex2-1 Register the FxComponent to the FxWidget
 // Add Translations
+// TODO: Ex4 - Add the baseCurrency,  the query and the widget key to the initial state.
 export const pluginFxRateWidget: WidgetPlugin = {
     Component: FXComponent,
     Icon: IconWorld,
