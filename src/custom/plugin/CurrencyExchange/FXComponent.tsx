@@ -1,6 +1,5 @@
 import {useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
 import {Spin, Table} from "antd";
-import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"
 
@@ -21,9 +20,12 @@ const columns = [
 export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
     const [fxRates, setFxRates] = useState([]);
-    const [baseCurrency, setbaseCurrency] = useState("USD");
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
+    // TODO:  Ex 3-2
+    //  1/ use a pivot table to build the query that will allow you to retrieve the currencies from the cube
+    //  2/ import the the useQueryResult hook and use it with your query to retrieve the currencies. Don't forget to
+    //  3/ use the returned values to: display  a spin if the query has not returned, print the stacktrace of the error if there is one, and finally pass the returned currencies to the api call  to get the rates.
     let {data, error, isLoading} = useQueryResult({
         serverKey: "Ranch-5.10",
         queryId: props.queryId,
@@ -55,7 +57,7 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
                 }
             });
             console.log(currencies);
-            const updatedApiUrl = `${apiBaseURl}latest?from=${baseCurrency}&to=${currencies.join(",")}`
+            const updatedApiUrl = `${apiBaseURl}latest?from=USD&to=${currencies.join(",")}`
             axios.get(updatedApiUrl).then(result => {
 
                     let ratesTableData: any[] = Object.keys(result.data.rates).map(currency => {
@@ -92,7 +94,6 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
     return (
         <div style={{height:"100%", overflow: "auto" , padding: 5}}>
-            <Title level={4}>{`Base Currency: ${baseCurrency}`}</Title>
             <Table
                 columns={columns}
                 dataSource={fxRates}
