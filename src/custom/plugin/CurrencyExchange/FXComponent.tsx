@@ -20,12 +20,16 @@ const columns = [
 export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
     const [fxRates, setFxRates] = useState([]);
+    // TODO : Ex4 - Add the base currency to the state of the component. Initially it should be set to "USD"
+
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
     // TODO:  Ex 3-2
     //  1/ use a pivot table to build the query that will allow you to retrieve the currencies from the cube
     //  2/ import the the useQueryResult hook and use it with your query to retrieve the currencies. Don't forget to
     //  3/ use the returned values to: display  a spin if the query has not returned, print the stacktrace of the error if there is one, and finally pass the returned currencies to the api call  to get the rates.
+
+    // TODO: Ex4 - Replace the hardcoded query with the query  from the widget state
     let {data, error, isLoading} = useQueryResult({
         serverKey: "Ranch-5.10",
         queryId: props.queryId,
@@ -45,9 +49,10 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
         }
     });
 
-
+    // TODO: Ex4 - Make sure the baseCurrency state will change when the widget state changes. Use the useEffect hook.
 
     // makes the API call to retrieve fxRates, base and date, once we have the data from the cube
+    // TODO: Ex4 - make sure the effect is called also when the baseCurrency of the component changes
     useEffect(() => {
         if (data) {
             let [columnAxis, rowsAxis] = data.axes;
@@ -56,7 +61,6 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
                     return position[0].captionPath[1]
                 }
             });
-            console.log(currencies);
             const updatedApiUrl = `${apiBaseURl}latest?from=USD&to=${currencies.join(",")}`
             axios.get(updatedApiUrl).then(result => {
 
@@ -92,6 +96,7 @@ export const FXComponent: FC<WidgetPluginProps> = (props) => {
 
 
 
+    //  TODO : add a title Component to explicitely show the baseCurrency of the fx rates
     return (
         <div style={{height:"100%", overflow: "auto" , padding: 5}}>
             <Table
