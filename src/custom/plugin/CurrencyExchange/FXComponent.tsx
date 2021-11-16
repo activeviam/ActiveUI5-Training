@@ -1,4 +1,4 @@
-import {CellSetSelection, useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
+import {axisIds, CellSetSelection, useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
 import {Spin, Table} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios"
@@ -25,6 +25,9 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState,CellSetSel
     const [baseCurrency, setbaseCurrency] = useState(props.widgetState.baseCurrency);
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
+    const { onSelectionChange } = props;
+
+
     let {data, error, isLoading} = useQueryResult({
         serverKey: "Ranch-5.10",
         queryId: props.queryId,
@@ -32,6 +35,31 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState,CellSetSel
             mdx: props.widgetState.query
         }
     });
+
+    useEffect(() => {
+        if (!data || !onSelectionChange) {
+            return;
+        }
+
+        const selectedCurrency: CellSetSelection = {
+            axes: [
+                {
+                    id: axisIds.rows,
+                    positions: [[{
+                        dimensionName: "Currency",
+                        hierarchyName: "Currency",
+                        ...baseCurrency
+
+                    }]]
+                }
+            ]
+        }
+        onSelectionChange(selectedCurrency);
+
+
+
+    }, [data, onSelectionChange, baseCurrency]);
+
 
     useEffect(() => {
         setbaseCurrency(props.widgetState.baseCurrency);

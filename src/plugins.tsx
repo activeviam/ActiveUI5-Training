@@ -213,7 +213,7 @@ pluginWidgetTreeTable.cellStyle = pluginCellStylePivotTable.key;
 
 //Setting MenuItem on our custom FxWidget
 pluginFxRateWidget.menuItems = [
-    pluginMenuItemBaseCurrency.key
+    pluginMenuItemBaseCurrency.key, pluginMenuItemFilterOnSelection.key
 ]
 
 pluginWidgetDrillthroughTable.menuItems = [
