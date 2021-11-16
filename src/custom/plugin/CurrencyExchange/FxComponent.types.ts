@@ -1,8 +1,8 @@
-import {AWidgetState, MdxString} from "@activeviam/activeui-sdk";
+import {AWidgetState, MdxString, MemberCoordinates, Tuple} from "@activeviam/activeui-sdk";
 
 export interface FxComponentWidgetState extends AWidgetState {
     query: MdxString
-    baseCurrency: string
+    baseCurrency: MemberCoordinates
 }
 
 export type BaseCurrency = string;

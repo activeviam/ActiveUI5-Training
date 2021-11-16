@@ -8,7 +8,7 @@ import {FxComponentWidgetState} from "../../CurrencyExchange/FxComponent.types";
 export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetState>> = (props) => {
 
     const [currencyModalVisible, setCurrencyModalVisible] = useState(false);
-    const [currencyList, setCurrencyList] = useState<Array<String>>([]);
+    const [currencyList, setCurrencyList] = useState<Array<any>>([]);
 
     let {data, error, isLoading} = useQueryResult({
         serverKey: "Ranch-5.10",
@@ -37,13 +37,11 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
         setCurrencyModalVisible(true)
     }
 
-    const handleSelectCurrency = (event: any) => {
-        console.log("new Currency", event.currentTarget.value);
-        console.log(props.widgetState);
-        console.log("widget state", props.widgetState.baseCurrency);
+    const handleSelectCurrency = (event: any, currencyList: Array<any>) => {
+        const newBaseCurrency = currencyList.find(currency => currency.captionPath[1] === event.currentTarget.value);
         props.onWidgetChange({
             ...props.widgetState,
-            baseCurrency: event.currentTarget.value
+            baseCurrency: newBaseCurrency
         })
     }
 
@@ -65,8 +63,8 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
     if (data){
         let [columnAxis, rowsAxis] = data.axes;
         currencies = columnAxis.positions.reduce((results, position) => {
-            if (position[0].captionPath[1]) {
-                results.push(position[0].captionPath[1])
+            if (position[0]) {
+                results.push(position[0])
             }
             return results;
         }, [])
@@ -90,19 +88,19 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
             >
                 <List
                     itemLayout="horizontal"
-                    dataSource={currencyList}
+                    dataSource={currencyList.filter(currency => currency.captionPath[1] !== undefined)}
                     size="small"
                     style={{ width: 200 }}
-                    renderItem={(item: string) => (
+                    renderItem={(item: any) => (
                         <List.Item>
                             <div>
                                 <Button
                                     type="text"
-                                    id={item}
-                                    value={item}
-                                    onClick={handleSelectCurrency}
+                                    id={item.captionPath[1]}
+                                    value={item.captionPath[1]}
+                                    onClick={e => handleSelectCurrency(e, currencyList)}
                                 >
-                                    {item}
+                                    {item.captionPath[1]}
                                 </Button>
                             </div>
                         </List.Item>

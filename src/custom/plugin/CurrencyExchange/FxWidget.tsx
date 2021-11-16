@@ -1,4 +1,4 @@
-import {WidgetPlugin} from "@activeviam/activeui-sdk";
+import {CellSetSelection, WidgetPlugin} from "@activeviam/activeui-sdk";
 import {FXComponent} from "./FXComponent";
 import {BaseCurrency, FxComponentWidgetState} from "./FxComponent.types";
 import {IconWorld} from "./IconWorld";
@@ -7,12 +7,24 @@ const widgetKey = "fx-rates"
 
 //TODO Ex2-1: Register the FxComponent to the FxWidget
 // Add Translations
-export const pluginFxRateWidget: WidgetPlugin<FxComponentWidgetState> = {
+export const pluginFxRateWidget: WidgetPlugin<FxComponentWidgetState, CellSetSelection> = {
     Component: FXComponent,
     Icon: IconWorld,
     initialState: {
         widgetKey,
-        baseCurrency: "USD",
+        baseCurrency: {
+            namePath: [
+                "AllMember",
+                "EUR"
+            ],
+            captionPath: [
+                "AllMember",
+                "EUR"
+            ],
+            properties: {
+                "DISPLAY_INFO": 0
+            }
+        },
         query: "SELECT\n" +
             "  NON EMPTY Hierarchize(\n" +
             "    Descendants(\n" +

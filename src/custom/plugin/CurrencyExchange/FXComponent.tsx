@@ -1,9 +1,9 @@
-import {useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
+import {CellSetSelection, useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
 import {Spin, Table} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"
-import {BaseCurrency, FxComponentWidgetState} from "./FxComponent.types";
+import {FxComponentWidgetState} from "./FxComponent.types";
 
 const apiBaseURl = "http://api.frankfurter.app/"
 const columns = [
@@ -19,7 +19,7 @@ const columns = [
     }
 ]
 
-export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props) => {
+export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState,CellSetSelection>> = (props) => {
 
     const [fxRates, setFxRates] = useState([]);
     const [baseCurrency, setbaseCurrency] = useState(props.widgetState.baseCurrency);
@@ -47,9 +47,8 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
                     return position[0].captionPath[1]
                 }
             });
-            console.log(currencies);
-            console.log("base", baseCurrency);
-            const updatedApiUrl = `${apiBaseURl}latest?from=${baseCurrency}&to=${currencies.join(",")}`
+            let apiBaseCurrency  = baseCurrency.captionPath[1]
+            const updatedApiUrl = `${apiBaseURl}latest?from=${apiBaseCurrency}&to=${currencies.join(",")}`
             axios.get(updatedApiUrl).then(result => {
 
                     let ratesTableData: any[] = Object.keys(result.data.rates).map(currency => {
@@ -86,7 +85,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
 
     return (
         <div style={{height:"100%", overflow: "auto" , padding: 5}}>
-            <Title level={4}>{`Base Currency: ${baseCurrency}`}</Title>
+            <Title level={4}>{`Base Currency: ${baseCurrency.captionPath[1]}`}</Title>
             <Table
                 columns={columns}
                 dataSource={fxRates}
