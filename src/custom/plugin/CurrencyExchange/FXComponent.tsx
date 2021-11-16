@@ -56,8 +56,6 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState,CellSetSel
         }
         onSelectionChange(selectedCurrency);
 
-
-
     }, [data, onSelectionChange, baseCurrency]);
 
 
