@@ -1,5 +1,5 @@
 import {useQueryResult, WidgetPluginProps} from "@activeviam/activeui-sdk";
-import {Select, Spin, Table} from "antd";
+import {Spin, Table} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"

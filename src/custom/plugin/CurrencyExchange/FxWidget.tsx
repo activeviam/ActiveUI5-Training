@@ -1,8 +1,6 @@
-import { WidgetPlugin } from "@activeviam/activeui-sdk";
-import {QueryComponent} from "../queryWidget/QueryComponent";
-import { FXComponent } from "./FXComponent";
+import {WidgetPlugin} from "@activeviam/activeui-sdk";
+import {FXComponent} from "./FXComponent";
 import {IconWorld} from "./IconWorld";
-import {SelectComponent} from "./SelectComponent";
 
 const widgetKey = "fx-rates"
 
