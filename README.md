@@ -29,7 +29,7 @@ Go to the root of your sandbox and run
 mvn clean install
 ```
 #### start
-Locate the `ActivePivotServer` class to start your project. It should be localted at `src/main/java/com/activeviam/sandbox/server/ActivePivotServer.java`
+Locate the `ActivePivotServer` class to start your project. It should be located at `src/main/java/com/activeviam/sandbox/server/ActivePivotServer.java`
 
 ### content server initialisation
 The github gist containing the files can be found [here](https://github.com/activeviam/activeui/blob/master/internal-docs/content-server-initialization.md)
