@@ -1,12 +1,12 @@
 window.env = {
-  contentServerVersion: "5.10.x",
-  contentServerUrl: "https://activepivot-ranch.activeviam.com:5100",
+  contentServerVersion: "5.11.x",
+  contentServerUrl: "http://13.37.79.130:40750",
   // WARNING: Changing the keys of activePivotServers will break previously saved widgets and dashboards.
   // If you must do it, then you also need to update each one's serverKey attribute on your content server.
   activePivotServers: {
-    "Ranch-5.10": {
-      url: "https://activepivot-ranch.activeviam.com:5100",
-      version: "5.10.x",
+    "Ranch-5.11": {
+      url: "http://13.37.79.130:40750",
+      version: "5.11.x",
     }
   },
 };

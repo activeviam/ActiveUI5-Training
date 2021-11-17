@@ -17,13 +17,13 @@ export const pluginFxRateWidget: WidgetPlugin<FxComponentWidgetState> = {
             "  NON EMPTY Hierarchize(\n" +
             "    Descendants(\n" +
             "      {\n" +
-            "        [Currency].[Currency].[AllMember]\n" +
+            "        [Contracts (static)].[Currency].[AllMember]\n" +
             "      },\n" +
             "      1,\n" +
             "      SELF_AND_BEFORE\n" +
             "    )\n" +
             "  ) ON ROWS\n" +
-            "  FROM [EquityDerivativesCube]\n" +
+            "  FROM [IFRS9]\n" +
             "  CELL PROPERTIES VALUE, FORMATTED_VALUE, BACK_COLOR, FORE_COLOR, FONT_FLAGS"
     },
     key: widgetKey,

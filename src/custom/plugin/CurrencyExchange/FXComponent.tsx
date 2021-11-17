@@ -26,7 +26,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
     let {data, error, isLoading} = useQueryResult({
-        serverKey: "Ranch-5.10",
+        serverKey: "Ranch-5.11",
         queryId: props.queryId,
         query: {
             mdx: props.widgetState.query
