@@ -11,20 +11,20 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
     const [currencyList, setCurrencyList] = useState<Array<any>>([]);
 
     let {data, error, isLoading} = useQueryResult({
-        serverKey: "Ranch-5.10",
+        serverKey: "Ranch-5.11",
         queryId: props.queryId,
         query: {
             mdx: "SELECT\n" +
                 "  NON EMPTY Hierarchize(\n" +
                 "    Descendants(\n" +
                 "      {\n" +
-                "        [Currency].[Currency].[AllMember]\n" +
+                "        [Contracts (static)].[Currency].[AllMember]\n" +
                 "      },\n" +
                 "      1,\n" +
                 "      SELF_AND_BEFORE\n" +
                 "    )\n" +
                 "  ) ON ROWS\n" +
-                "  FROM [EquityDerivativesCube]\n" +
+                "  FROM [IFRS9]\n" +
                 "  CELL PROPERTIES VALUE, FORMATTED_VALUE, BACK_COLOR, FORE_COLOR, FONT_FLAGS"
         }
     });
