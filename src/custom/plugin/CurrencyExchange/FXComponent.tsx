@@ -26,7 +26,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
     let {data, error, isLoading} = useQueryResult({
-        serverKey: "Ranch-5.10",
+        serverKey: "Ranch-5.11",
         queryId: props.queryId,
         query: {
             mdx: props.widgetState.query
@@ -47,8 +47,6 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
                     return position[0].captionPath[1]
                 }
             });
-            console.log(currencies);
-            console.log("base", baseCurrency);
             const updatedApiUrl = `${apiBaseURl}latest?from=${baseCurrency}&to=${currencies.join(",")}`
             axios.get(updatedApiUrl).then(result => {
 
