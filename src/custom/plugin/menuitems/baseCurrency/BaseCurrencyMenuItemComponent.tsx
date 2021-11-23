@@ -8,7 +8,7 @@ import {FxComponentWidgetState} from "../../CurrencyExchange/FxComponent.types";
 export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetState>> = (props) => {
 
     const [currencyModalVisible, setCurrencyModalVisible] = useState(false);
-    const [currencyList, setCurrencyList] = useState<Array<String>>([]);
+    const [currencyList, setCurrencyList] = useState<Array<string>>([]);
 
     let {data, error, isLoading} = useQueryResult({
         serverKey: "Ranch-5.10",
@@ -30,10 +30,10 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
     });
 
     const handleChangebaseCurrency: MenuItemProps["onClick"] = (param) => {
-        // the props.onClick will make the custom menuItem disappear when the modal opens
         if (props.onClick) {
             props.onClick(param)
         }
+        console.log("setting modal to visible")
         setCurrencyModalVisible(true)
     }
 
@@ -61,7 +61,8 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
         return <p>error.stackTrace</p>
     }
 
-    let currencies = [];
+    useEffect(() => {
+    let currencies: string[] = [];
     if (data){
         let [columnAxis, rowsAxis] = data.axes;
         currencies = columnAxis.positions.reduce((results, position) => {
@@ -69,11 +70,10 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
                 results.push(position[0].captionPath[1])
             }
             return results;
-        }, [])
+        }, currencies)
     }
 
-    useEffect(() => {
-        setCurrencyList(currencies);
+    setCurrencyList(currencies);
     }, [data]);
 
 
@@ -95,7 +95,6 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
                     style={{ width: 200 }}
                     renderItem={(item: string) => (
                         <List.Item>
-                            <div>
                                 <Button
                                     type="text"
                                     id={item}
@@ -104,7 +103,6 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
                                 >
                                     {item}
                                 </Button>
-                            </div>
                         </List.Item>
                     )}
                 />

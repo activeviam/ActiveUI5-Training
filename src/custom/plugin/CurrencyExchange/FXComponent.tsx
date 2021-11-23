@@ -3,7 +3,7 @@ import {Spin, Table} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"
-import {BaseCurrency, FxComponentWidgetState} from "./FxComponent.types";
+import {FxComponentWidgetState} from "./FxComponent.types";
 
 const apiBaseURl = "http://api.frankfurter.app/"
 const columns = [
