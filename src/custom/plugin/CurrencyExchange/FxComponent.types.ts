@@ -5,4 +5,10 @@ export interface FxComponentWidgetState extends AWidgetState {
     baseCurrency: string
 }
 
+export interface RatesTableData {
+    key: string
+    currency: string
+    rate: number
+}
+
 export type BaseCurrency = string;

@@ -3,7 +3,7 @@ import {Spin, Table} from "antd";
 import Title from "antd/es/typography/Title";
 import axios from "axios"
 import React, {FC, useEffect, useState} from "react"
-import {FxComponentWidgetState} from "./FxComponent.types";
+import {FxComponentWidgetState, RatesTableData} from "./FxComponent.types";
 
 const apiBaseURl = "http://api.frankfurter.app/"
 const columns = [
@@ -19,9 +19,11 @@ const columns = [
     }
 ]
 
+
+
 export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props) => {
 
-    const [fxRates, setFxRates] = useState<Array<any>>([]);
+    const [fxRates, setFxRates] = useState<Array<RatesTableData>>([]);
     const [baseCurrency, setbaseCurrency] = useState(props.widgetState.baseCurrency);
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
@@ -52,7 +54,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
             const updatedApiUrl = `${apiBaseURl}latest?from=${baseCurrency}&to=${currencies.join(",")}`
             axios.get(updatedApiUrl).then(result => {
 
-                    let ratesTableData: any[] = Object.keys(result.data.rates).map(currency => {
+                    let ratesTableData: RatesTableData[] = Object.keys(result.data.rates).map(currency => {
                         let data = {
                             key: currency,
                             currency: currency,
