@@ -29,7 +29,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState,CellSetSel
 
 
     let {data, error, isLoading} = useQueryResult({
-        serverKey: "Ranch-5.11",
+        serverKey: "Ranch-5.10",
         queryId: props.queryId,
         query: {
             mdx: props.widgetState.query
@@ -46,7 +46,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState,CellSetSel
                 {
                     id: axisIds.rows,
                     positions: [[{
-                        dimensionName: "Contracts (static)",
+                        dimensionName: "Currency",
                         hierarchyName: "Currency",
                         ...baseCurrency
 

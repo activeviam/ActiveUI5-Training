@@ -11,20 +11,20 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
     const [currencyList, setCurrencyList] = useState<Array<any>>([]);
 
     let {data, error, isLoading} = useQueryResult({
-        serverKey: "Ranch-5.11",
+        serverKey: "Ranch-5.10",
         queryId: props.queryId,
         query: {
             mdx: "SELECT\n" +
                 "  NON EMPTY Hierarchize(\n" +
                 "    Descendants(\n" +
                 "      {\n" +
-                "        [Contracts (static)].[Currency].[AllMember]\n" +
+                "        [Currency].[Currency].[AllMember]\n" +
                 "      },\n" +
                 "      1,\n" +
                 "      SELF_AND_BEFORE\n" +
                 "    )\n" +
                 "  ) ON ROWS\n" +
-                "  FROM [IFRS9]\n" +
+                "  FROM [EquityDerivativesCube]\n" +
                 "  CELL PROPERTIES VALUE, FORMATTED_VALUE, BACK_COLOR, FORE_COLOR, FONT_FLAGS"
         }
     });
@@ -59,18 +59,17 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
         return <p>error.stackTrace</p>
     }
 
-    let currencies = [];
-    if (data){
-        let [columnAxis, rowsAxis] = data.axes;
-        currencies = columnAxis.positions.reduce((results, position) => {
-            if (position[0]) {
-                results.push(position[0])
-            }
-            return results;
-        }, [])
-    }
-
     useEffect(() => {
+        let currencies: string[]= [];
+        if (data){
+            let [columnAxis, rowsAxis] = data.axes;
+            currencies = columnAxis.positions.reduce((results, position) => {
+                if (position[0]) {
+                    results.push(position[0])
+                }
+                return results;
+            }, currencies)
+    }
         setCurrencyList(currencies);
     }, [data]);
 
@@ -93,7 +92,6 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
                     style={{ width: 200 }}
                     renderItem={(item: any) => (
                         <List.Item>
-                            <div>
                                 <Button
                                     type="text"
                                     id={item.captionPath[1]}
@@ -102,7 +100,6 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
                                 >
                                     {item.captionPath[1]}
                                 </Button>
-                            </div>
                         </List.Item>
                     )}
                 />
