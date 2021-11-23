@@ -20,13 +20,14 @@ const columns = [
 ]
 
 
-
+// TODO: Ex5 - extend FXComponent with CellSetSelection
 export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props) => {
 
     const [fxRates, setFxRates] = useState<Array<RatesTableData>>([]);
     const [baseCurrency, setbaseCurrency] = useState(props.widgetState.baseCurrency);
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
+    //TODO: Ex5 - retrieve the onSelectionChange method from the props
     let {data, error, isLoading} = useQueryResult({
         serverKey: "Ranch-5.10",
         queryId: props.queryId,
@@ -35,6 +36,11 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
         }
     });
 
+    //TODO  Ex 5, add a useEffect hook so that the added item
+    // a/ does not return if data or onSelectionChange are undefined
+    // b/ creates a cellSetSelection object defining the baseCurrency in the selected positions on rows
+    // c/ calls onSelectionChange passing the new cellSetSelection object
+    // d/ the effect should have dependencies on data, onSelectionChange, and baseCurrency
     useEffect(() => {
         setbaseCurrency(props.widgetState.baseCurrency);
     }, [props.widgetState.baseCurrency]);
@@ -51,6 +57,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
             });
             console.log(currencies);
             console.log("base", baseCurrency);
+            //TODO retrieve the base currency from the new object to pass it to the url
             const updatedApiUrl = `${apiBaseURl}latest?from=${baseCurrency}&to=${currencies.join(",")}`
             axios.get(updatedApiUrl).then(result => {
 
@@ -86,6 +93,7 @@ export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props
 
 
 
+    // TODO: Ex5 - make sure the new data model is working in the title
     return (
         <div style={{height:"100%", overflow: "auto" , padding: 5}}>
             <Title level={4}>{`Base Currency: ${baseCurrency}`}</Title>

@@ -33,14 +33,11 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
         if (props.onClick) {
             props.onClick(param)
         }
-        console.log("setting modal to visible")
         setCurrencyModalVisible(true)
     }
 
+    // TODO: EX5 -the currency list now has to be passed to the event handler
     const handleSelectCurrency = (event: any) => {
-        console.log("new Currency", event.currentTarget.value);
-        console.log(props.widgetState);
-        console.log("widget state", props.widgetState.baseCurrency);
         props.onWidgetChange({
             ...props.widgetState,
             baseCurrency: event.currentTarget.value
@@ -61,6 +58,7 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
         return <p>error.stackTrace</p>
     }
 
+    // TODO:  Ex5 -  reflect the change of type for the base currency in the useEffect hook
     useEffect(() => {
     let currencies: string[] = [];
     if (data){
@@ -77,6 +75,8 @@ export const BaseCurrencyMenuItemComponent:  FC<MenuItemProps<FxComponentWidgetS
     }, [data]);
 
 
+    // TODO: Ex5 -  reflect the change in the currency List type in the List
+    // The signature of the handleSelectedCurrency handler has also changed
     return (
         <div>
             <Menu.Item {...getAntMenuItemProps(props)} onClick={handleChangebaseCurrency}>

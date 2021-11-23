@@ -211,6 +211,7 @@ pluginWidgetTreeTable.cellStyle = pluginCellStylePivotTable.key;
 );
 
 //Setting MenuItem on our custom FxWidget
+// TODO : Ex 5 - The pluginMenuItemFilterOnSelection also has to be added to our widget menu item
 pluginFxRateWidget.menuItems = [
     pluginMenuItemBaseCurrency.key
 ]

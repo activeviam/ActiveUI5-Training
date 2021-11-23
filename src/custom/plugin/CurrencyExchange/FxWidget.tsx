@@ -7,6 +7,7 @@ const widgetKey = "fx-rates"
 
 //TODO Ex2-1: Register the FxComponent to the FxWidget
 // Add Translations
+// TODO Ex5 - the baseCurrency Type has changed, reflect this in the initial state
 export const pluginFxRateWidget: WidgetPlugin<FxComponentWidgetState> = {
     Component: FXComponent,
     Icon: IconWorld,
