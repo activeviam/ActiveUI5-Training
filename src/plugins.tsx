@@ -7,14 +7,10 @@
  * */
 
 
-import _keyBy from "lodash/keyBy";
 import {
   CellPlugin,
   CellStylePlugin,
   MenuItemPlugin,
-  PluginRegistry,
-  TitleBarButtonPlugin,
-  WidgetPlugin,
   pluginCellPivotTable,
   pluginCellStyleDrillthroughTable,
   pluginCellStylePivotTable,
@@ -23,15 +19,15 @@ import {
   pluginCellTreeTable,
   pluginMenuItemCopyQuery,
   pluginMenuItemDuplicateWidget,
-  pluginMenuItemExportToCsv,
   pluginMenuItemExportDrillthroughToCsv,
+  pluginMenuItemExportToCsv,
   pluginMenuItemFilterOnSelection,
   pluginMenuItemFullScreen,
-  pluginMenuItemShowHideTotals,
   pluginMenuItemOpenDrillthrough,
   pluginMenuItemRefreshQuery,
   pluginMenuItemRemoveSort,
   pluginMenuItemRemoveWidget,
+  pluginMenuItemShowHideTotals,
   pluginMenuItemSortChartAscendingly,
   pluginMenuItemSortChartDescendingly,
   pluginMenuItemSortDrillthroughTableAscendingly,
@@ -39,6 +35,7 @@ import {
   pluginMenuItemSortPivotTableAscendingly,
   pluginMenuItemSortPivotTableDescendingly,
   pluginMenuItemSwitchQuickFilterMode,
+  PluginRegistry,
   pluginTitleBarButtonFullScreen,
   pluginTitleBarButtonRemoveWidget,
   pluginTitleBarButtonToggleQueryMode,
@@ -67,10 +64,12 @@ import {
   pluginWidgetQuickFilter,
   pluginWidgetTable,
   pluginWidgetTreeTable,
+  TitleBarButtonPlugin,
+  WidgetPlugin,
 } from "@activeviam/activeui-sdk";
+import _keyBy from "lodash/keyBy";
 import {pluginFxRateWidget} from "./custom/plugin/CurrencyExchange/FxWidget";
 import {pluginMenuItemBaseCurrency} from "./custom/plugin/menuitems/baseCurrency/baseCurrencyMenuItemPlugin";
-import {pluginQueryWidget} from "./custom/plugin/queryWidget/QueryWidget";
 
 
 // plugins used by cell component on table widgets
