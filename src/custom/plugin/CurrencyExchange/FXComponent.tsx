@@ -21,7 +21,7 @@ const columns = [
 
 export const FXComponent: FC<WidgetPluginProps<FxComponentWidgetState>> = (props) => {
 
-    const [fxRates, setFxRates] = useState([]);
+    const [fxRates, setFxRates] = useState<Array<any>>([]);
     const [baseCurrency, setbaseCurrency] = useState(props.widgetState.baseCurrency);
     const [isWaitingForAPI, setIsWaitingForAPI] = useState(true);
 
