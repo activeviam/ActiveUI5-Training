@@ -15,7 +15,7 @@
 - Typescript basics are advised
 - React, including the functional programming syntax and the following concepts
   - state/props
-  - hooks
+  - hooks (useState, useEffect, useMemo...)
   - Provider / Consumer
   - HOC (Higher order component)
 
